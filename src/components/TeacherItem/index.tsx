@@ -8,31 +8,41 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
 import styles from './styles';
 
-function TeacherItem() {
+export interface Teacher {
+    id: number,
+    avatar: string,
+    bio: string,
+    cost: number,
+    name: string,
+    subject: string,
+    whatsapp: string,
+}
+
+interface TeacherItemProps {
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
     return (
         <View style={styles.container}>
             <View style={styles.profile}>
                 <Image
                     style={styles.avatar}
-                    source={{ url: 'https://github.com/mariarubinger.png' }}
+                    source={{ url: teacher.avatar }}
                 />
                 
                 <View style={styles.profileInfo}>
-                    <Text style={styles.name}>Maria Rubinger</Text>
-                    <Text style={styles.subject}>Matemática</Text>
+                    <Text style={styles.name}>{teacher.name}</Text>
+                    <Text style={styles.subject}>{teacher.subject}</Text>
                 </View>
             </View>
         
-            <Text style={styles.bio}>
-                Engenheira que ama aprender sobre novas tecnologias.
-                {'\n'}{'\n'}
-                Ama compartilhar do seu conhecimento de forma leve e descomplicada.
-            </Text>
+            <Text style={styles.bio}>{teacher.bio}</Text>
         
             <View style={styles.footer}>
                 <Text style={styles.price}>
                     Preço/hora {'   '}
-                    <Text style={styles.priceValue}>R$ 80,00</Text>
+                    <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
                 </Text>
 
                 <View style={styles.buttonsContainer}>
