@@ -10,12 +10,12 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import api from '../../services/api';
 
 import styles from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 function TeacherList() {
     const [teachers, setTeachers] = useState([]);
     const [favorites, setFavorites] = useState<number[]>([]);
     const [isFiltersVisible, setIsFiltersVisible] = useState(false);
-
 
     const [subject, setSubject] = useState('');
     const [week_day, setWeekDay] = useState('');
@@ -33,6 +33,10 @@ function TeacherList() {
             }
         });
     }
+
+    useFocusEffect(() => {
+        loadFavorites();
+    });
 
     function handleToggleFiltwrsVisible() {
         setIsFiltersVisible(!isFiltersVisible);
